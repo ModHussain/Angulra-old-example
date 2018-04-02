@@ -1,0 +1,70 @@
+ <div  class="container m-t-50">
+             <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Search By</label>
+                            <div class="col-md-8">
+                                <select class="form-control" ng-model="SelectedCriteria" ng-options="S for S in Selectors">
+                                    <option value="">please select value</option>
+                                </select> 
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Search value:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="filterValue" class="form-control" 
+                                ng-change="postFilter();"/> 
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      <div class="table-responsive m-t-30">
+           <table class="table text-center">
+                      <thead>
+                          <tr>
+                              <th>S.No</th>
+												<th>Job Category</th>
+                                                <th>Job Type</th>
+                                                <th>Job Description</th>
+                                                <th>Job Location</th>
+                                                <th>Experience</th>
+                                                <th>Primary Skills</th>
+                                                <th>No of Resources</th>
+                                                <th>Join Within</th>
+                                                <th>Status</th>
+                                                <th>Edit</th>
+                                                
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="x in list">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{x.jobCategory}}</td>
+                                            <td>{{x.jobTitle}}</td>
+                                            <td>{{x.description}}</td>
+                                            <td>{{x.jobLocation}}</td>
+                                            <td>{{x.experience}}</td>
+                                            <td>{{x.primarySkills}}</td>
+                                            <td>{{x.resources}}</td>
+                                            <td>{{x.joinWithin}}</td>
+                                            <td><a type="button" class="btn btn-primary butn" ng-click="requirement(x)">{{x.status}}</a></td>
+                                            <td><a type="button" class="btn btn-primary" ui-sref="RA.updatepostarequirement({postId:x._id})"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                                           
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                  </div>
+                                  <div class="row">
+                                  <div class="col-md-6">
+                                      <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <button type="button" class="btn btn-primary pull-right" ui-sref="RA.addpostrequirement"> Add </button>
+                                  </div>
+                                  </div>
+                              </div>
