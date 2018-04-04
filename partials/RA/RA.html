@@ -13,7 +13,7 @@
         <li><a ui-sref=".buynow">Registration</a></li>
         <li><a ui-sref=".postarequirementlist">Requirement</a></li>
         <li><a ui-sref=".resourcelist"> Resource</a></li>
-        <li><a ui-sref=".alluserlist">All Users</a></li>
+        <li ng-show="{{all_users_type}}"><a ui-sref=".alluserlist">All Users</a></li>
        <!--  <li><a ui-sref=".JoinWithIn">JoinWithIn</a></li> -->
         <li class="dropdown">
 		    <button class="btn btn-primary dropdown-toggle master_btn" type="button" data-toggle="dropdown" style="">Master

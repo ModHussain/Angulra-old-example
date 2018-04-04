@@ -112,7 +112,21 @@ resourceApp.factory('RAService',['$http','$q','APIURL',function($http,$q,APIURL)
 	        	return deferred.promise;
 	        },
 
-	       
+	        uploadFileToUrl : function(uploadFile,uploadUrl){
+	            debugger;
+	            var deferred = $q.defer();
+	             var fd = new FormData();
+	             fd.append('uploadFile', uploadFile);
+	             $http.put(uploadUrl, fd, {
+	                transformRequest: angular.identity,
+	                headers: {'Content-Type': undefined}
+	             }).success(function(response){
+	             	deferred.resolve(response);
+	             }).error(function(err){
+	             	deferred.reject(err);
+	             })
+	             return deferred.promise;
+	          },
 			updatepostareq:function(postrequirement){
 				var deferred = $q.defer();
 				$http.put(APIURL + "/ResourceAdda/rest/requirement/saveRequirement/" +postrequirement._id,postrequirement).success(function(response){
@@ -212,6 +226,23 @@ resourceApp.factory('RAService',['$http','$q','APIURL',function($http,$q,APIURL)
 				})
 				return deferred.promise;
 			},
+			
+			 uploadResumeToUrl : function(uploadFile,uploadUrl){
+                 debugger;
+                 var deferred = $q.defer();
+                  var fd = new FormData();
+                  fd.append('uploadFile', uploadFile);
+                  $http.put(uploadUrl, fd, {
+                     transformRequest: angular.identity,
+                     headers: {'Content-Type': undefined}
+                  }).success(function(response){
+                  	deferred.resolve(response);
+                  }).error(function(err){
+                  	deferred.reject(err);
+                  })
+                  return deferred.promise;
+               },
+               
 			datafilter: function(filter, value){
 	            if(filter.consultant == 0){
 	                var deferred = $q.defer();  
@@ -288,6 +319,7 @@ resourceApp.factory('RAService',['$http','$q','APIURL',function($http,$q,APIURL)
 				return deferred.promise;
 			},
 			mappingresource: function(filter){
+				debugger;
 				var deferred = $q.defer();
 				$http.get('http://localhost:8080/ResourceAdda/rest/resource/findResourcesByTwoIds/'+ filter.selecttype +'/'+ filter.nameId +'/'+ filter.localId +'/1/10').success(function(response){
 					deferred.resolve(response);
@@ -296,6 +328,26 @@ resourceApp.factory('RAService',['$http','$q','APIURL',function($http,$q,APIURL)
 				})
 				return deferred.promise;
 			},
+			
+			PostresourceSoft: function(resource){
+				var deferred = $q.defer();
+				$http.put(APIURL + '/ResourceAdda/rest/resource/softLock/' + resource._id, resource).success(function(response){
+					deferred.resolve(response);
+				}).error(function(err){
+					deferred.reject(err);
+				})
+				return deferred.promise;
+			},
+			PostresourceHard: function(resource){
+				var deferred = $q.defer();
+				$http.put(APIURL + '/ResourceAdda/rest/resource/hardLock/' + resource._id, resource).success(function(response){
+					deferred.resolve(response);
+				}).error(function(err){
+					deferred.reject(err);
+				})
+				return deferred.promise;
+			},
+			
 			//vendor services
 			postareqList: function(){
 				var deferred = $q.defer();

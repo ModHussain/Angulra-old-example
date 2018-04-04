@@ -15,6 +15,34 @@ resourceApp.controller('postresourceCtrl',['$scope',"$state","RAService",functio
 			}
 		})
 	}
+//	
+//	$scope.softlockResource = function(presource){
+//		debugger;
+//		if(presource.softLock == "YES"){
+//			presource.softLock = "NO";
+//		RAService.PostresourceSoft(presource).then(function(data){
+//			$scope.Presource = data;
+//			console.log($scope.Presource);
+//		},function(err){
+//			if(err){
+//				$scope.errorMessage = err;
+//			}
+//		})
+//		} else {
+//			presource.softLock = "YES";
+//			RAService.PostresourceSoft(presource).then(function(data) {
+//				$scope.Presource = data;
+//				console.log($scope.Presource);
+//			}, function(err) {
+//				if (err) {
+//					$scope.errorMessage = err;
+//				}
+//			})
+//		}
+//}
+	
+	
+	
 }]);
 
 resourceApp.controller('postresourceByIdCtrl',['$scope','$state','$stateParams','RAService',function($scope,$state,$stateParams,RAService){
@@ -33,9 +61,16 @@ resourceApp.controller('postresourceByIdCtrl',['$scope','$state','$stateParams',
 			}
 		})
 	}
-	$scope.getById = function(id,name){
+	$scope.getById = function(id,name,softlock,hardlock){
+		debugger;
 		$scope.idobject = id;
 		$scope.name = name;
+		$scope.softLock = softlock;
+		$scope.hardLock=hardlock;
+		if($scope.softLock == "YES"){
+			$scope.root = "This Resource is already engaged with some other Customer"
+		}
+		
 	}
 	$scope.mappingpostresource = function(){
 		debugger;
@@ -52,4 +87,7 @@ resourceApp.controller('postresourceByIdCtrl',['$scope','$state','$stateParams',
 		}
 	})
 	}
+	
+	
+	
 }])

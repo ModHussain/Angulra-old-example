@@ -11,7 +11,7 @@
       <ul class="nav navbar-nav">
         <li><a ui-sref=".dashboard">Dashboard</a></li>
         <li><a ui-sref="">Buy Now</a></li>
-        <li><a ui-sref=".alluserlist" ng-if="user1 != false">All User</a></li>
+        <li ng-show="{{all_users_type}}"><a ui-sref=".alluserlist">All User</a></li>
         <li><a ui-sref=".resourcelist">Add Resource</a></li>
         <li><a ui-sref=".postresource">Post Resource</a></li>
         <li><a ui-sref=".resourceMap">Resource Map</a></li>

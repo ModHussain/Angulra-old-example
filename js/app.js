@@ -73,11 +73,14 @@ resourceApp.controller('LoginController',['$scope', '$rootScope', '$state', '$co
                         console.log($scope.user.registrationType);
                         localStorage.setItem('registrationType', $scope.user.registrationType);
                         localStorage.setItem('registrationId', $scope.user.registrationId);
+                        localStorage.setItem('use', $scope.user.roles.USER);
+                        localStorage.setItem('admi',$scope.user.roles.ADMIN);
+                      
                     // localStorage.getItem('registrationType');
                    
                           if($scope.user.registrationType.length > 1 && $scope.user.registrationType[0] == "RA"){
                             console.log("RA Module");
-                         $state.go('RA.dashboard');
+                             $state.go('RA.dashboard');
                           }
                           if($scope.user.registrationType.length > 1 && $scope.user.registrationType[0] == "customer"){
                              console.log("customer Module")
@@ -104,7 +107,9 @@ resourceApp.controller('LoginController',['$scope', '$rootScope', '$state', '$co
                             console.log("customer Module")
                             $state.go('customer.dashboard');
                         }
-                        }    
+                        } 
+                        
+                        
                     })
                 });
         }

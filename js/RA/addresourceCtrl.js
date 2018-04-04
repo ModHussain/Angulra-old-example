@@ -63,6 +63,62 @@ resourceApp.controller('resourcelistCtrl',["$scope","$state","$stateParams","RAS
 			})
 		}
 }
+
+
+$scope.softlockResource = function(resource){
+debugger;
+if(resource.softLock == "YES"){
+	resource.softLock = "NO";
+RAService.PostresourceSoft(resource).then(function(data){
+$scope.Presource = data;
+	console.log($scope.Presource);
+},function(err){
+	if(err){
+		$scope.errorMessage = err;
+	}
+})
+} else {
+	resource.softLock = "YES";
+	RAService.PostresourceSoft(resource).then(function(data) {
+		$scope.Presource = data;
+		console.log($scope.Presource);
+	}, function(err) {
+		if (err) {
+			$scope.errorMessage = err;
+		}
+	})
+}
+}
+
+
+$scope.hardlockResource = function(resource){
+	debugger;
+	if(resource.hardLock == "YES"){
+		resource.hardLock = "NO";
+	RAService.PostresourceHard(resource).then(function(data){
+	$scope.Presource = data;
+		console.log($scope.Presource);
+	},function(err){
+		if(err){
+			$scope.errorMessage = err;
+		}
+	})
+	} else {
+		resource.hardLock = "YES";
+		RAService.PostresourceHard(resource).then(function(data) {
+			$scope.Presource = data;
+			console.log($scope.Presource);
+		}, function(err) {
+			if (err) {
+				$scope.errorMessage = err;
+			}
+		})
+	}
+	}
+
+
+
+
 } ]);
 
 /*resourceApp.controller('resourcelistCtrl',["$scope","$state","$stateParams","RAService",function($scope, $state, $stateParams, RAService){
@@ -180,13 +236,37 @@ resourceApp.controller('addresourceCtrl',["$scope","$state","$stateParams","$fil
 										function(data) {
 											$scope.resourceadd = data;
 											console.log($scope.resourceadd);
-											$state.go('RA.resourcelist');
+											$state.go('RA.bulkUpload');
 										}, function(err) {
 											if (err) {
 												$scope.errorMessage = err;
 											}
 										})
 							}
+							
+							$scope.uploadFile = function(){
+						       	debugger;
+						           var uploadFile = $scope.myFile;
+						           $scope.registrationId= $scope.comId;
+						           $scope.registrationId= $scope.comId;
+						           debugger;
+						           console.log(uploadFile);
+						          /* console.log(fd);*/
+						           var uploadUrl = "http://localhost:8080/ResourceAdda/rest/resource/uploadFile/"+$scope.registrationId
+						           ;
+						           RAService.uploadResumeToUrl(uploadFile,uploadUrl).then(function(data){
+						           		$scope.f=data;
+						           		console.log($scope.f);
+						           		console.log("success");
+						           		$state.go('RA.resourcelist');
+						           },function(err){
+							       if(err){
+							           $scope.errorMessage = err;
+							      	 }console.log("fail");
+						           })
+						    };
+							
+							
 
 						} ]);
 resourceApp.controller('updateresourceCtrl',["$scope","$state","$stateParams","$filter","RAService",function($scope, $state, $stateParams, $filter,RAService) {

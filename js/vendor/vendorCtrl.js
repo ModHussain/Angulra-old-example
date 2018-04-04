@@ -1,5 +1,6 @@
 resourceApp.controller('vendorCtrl',['$scope','$state','RAService',function($scope,$state,RAService){
-	
+	var user = localStorage.getItem('use');
+	var admin =localStorage.getItem('admi');
 	$scope.$on('$viewContentLoaded',function(){
 		//$scope.getroles();
 	})
@@ -22,6 +23,19 @@ resourceApp.controller('vendorCtrl',['$scope','$state','RAService',function($sco
 			if($scope.registerData == "customer"){
 				$state.go('customer.dashboard');
 			}
+			
+			 
+		}
+         if(admin== "true"){	
+			$scope.all_users_type=true;
+		}else if(user == "true" && admin == "true"){
+			$scope.all_users_type=true;
+		}
+		else if(user == "true"){
+			$scope.all_users_type=false;
+		}
+		else{
+
 		}
 	
 }])

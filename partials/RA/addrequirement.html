@@ -1,31 +1,26 @@
 <div class="container m-t-50">
-  <div class="row">
+<div class="row">
   	<div class="col-md-offset-3 col-md-6">
-  		<form ng-submit="">
+  		<form>
           	<div class="form-group">
           		<label class="control-label">Bulk Upload</label>
           		<input type="checkbox" ng-model="bulkData" ng-click="bulkFunction()">
           	</div>
           	<div ng-hide="hideBulk">
-          	 <div class="form-group">
-                  <label class="control-label">Company Name</label>
-                      <select class="form-control" ng-options="x for x in companyNameList" ng-change="companyid()" ng-model="companyName1" name="companyName" required>
-                        <option value="">Select CompanyName</option>
-                      </select>
-                  <span class="help-block" ng-show="frm.companyName.$dirty && frm.companyName.$invalid">Please select company Name..!!</span>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Upload Resume</label>
-                     <input type="file" name="file" class="form-control" ng-mdoel="postReq.uploadFile"/>
-        
-                  <span class="help-block" ng-show="frm.companyName.$dirty && frm.companyName.$invalid">Please select company Name..!!</span>
-                </div>
-                <div class="form-group">
-                 <input type="button" value="Import" class="btn btn-success" />
-                </div>
+          	  <div class="form-group">
+                <label class="control-label">Company Name</label>
+                <select class="form-control" ng-options="x for x in companyNameList" ng-change="companyid()" ng-model="companyName1" name="companyName" required>
+                     <option value="">Select CompanyName</option>
+                </select>
+                 <span class="help-block" ng-show="frm.companyName.$dirty && frm.companyName.$invalid">Please select company Name..!!</span>
+              </div>
+              <div class="form-group">
+                <input type = "file" file-model = "myFile" class="form-control"/></br>
+                <button ng-click = "uploadFile()" class="btn btn-success">Upload File</button>
+              </div>
           	</div>
           </form>
-  	</div>
+  	  </div>
       <div class="col-md-offset-3 col-md-6" ng-show="showBulk">
           <form name="frm" class="frmbgclr" ng-submit="addReq()">
               <div class="form-group">

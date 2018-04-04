@@ -63,9 +63,13 @@ resourceApp.controller('resourcemapCtrl',["$scope","$state","$stateParams","RASe
 			selecttype: $scope.selecttype,
 			nameId: $scope.comId,
 			localId: localStorage.getItem('registrationId')
-		}
+				
+			}
+		console.log($scope.filter)
+		
 		RAService.mappingresource($scope.filter).then(function(data){
 			$scope.resourcemap123 = data;
+			debugger;
 			console.log($scope.resourcemap123);
 		},function(err){
 			if(err){

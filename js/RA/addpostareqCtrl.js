@@ -7,30 +7,48 @@ resourceApp.controller('addpostreqCtrl',["$scope","$rootScope","$state","RAServi
 		
         })
 		
-			$scope.companyid = function(){
-				RAService.getCompanyList().then(function(data) {
+	$scope.companyid = function(){
+		RAService.getCompanyList().then(function(data) {
             debugger;
-             $scope.list=data;
-			 console.log($scope.list[0].companyName);
-			 for(var i=0; i< $scope.list.length;i++){ 
-				$scope.companyNameList.push($scope.list[i].companyName);
-				$scope.companyId.push($scope.list[i]._id);
-			 }
-			$scope.companyid = function(){
-				  debugger;
-				 for(var j=0;j<$scope.companyNameList.length;j++){
-		
-		            if($scope.companyName1 == $scope.companyNameList[j]){
-		
-		               $scope.comId = $scope.companyId[j];
-		               localStorage.setItem("company", $scope.comId);
-					   console.log($scope.comId);
-		
-		            }
-				 }
-			}
-        });
-	}
+	             $scope.list=data;
+				 console.log($scope.list[0].companyName);
+					 for(var i=0; i< $scope.list.length;i++){ 
+						$scope.companyNameList.push($scope.list[i].companyName);
+						$scope.companyId.push($scope.list[i]._id);
+					 }
+				$scope.companyid = function(){
+					debugger;
+						 for(var j=0;j<$scope.companyNameList.length;j++){
+				
+				            if($scope.companyName1 == $scope.companyNameList[j]){
+				
+				               $scope.comId = $scope.companyId[j];
+				               localStorage.setItem("company", $scope.comId);
+							   console.log($scope.comId);
+				
+				            }
+						 }
+				}
+	       });
+	};
+	$scope.uploadFile = function(){
+       	debugger;
+           var uploadFile = $scope.myFile;
+           $scope.registrationId= $scope.comId;
+           console.log(uploadFile);
+          /* console.log(fd);*/
+           var uploadUrl = "http://localhost:8080/ResourceAdda/rest/requirement/bulkUpload/"+$scope.registrationId;
+           RAService.uploadFileToUrl(uploadFile,uploadUrl).then(function(data){
+           		$scope.f=data;
+           		console.log($scope.f);
+           		console.log("success");
+           	 $state.go('RA.postarequirementlist');
+           },function(err){
+	       if(err){
+	           $scope.errorMessage = err;
+	      	 }console.log("fail");
+           })
+    };
 			 
 
          

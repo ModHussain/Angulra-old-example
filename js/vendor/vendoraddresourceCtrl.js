@@ -14,7 +14,7 @@ resourceApp.controller('vendorresourcelistCtrl',["$scope","$state","$stateParams
     
 	$scope.getresourcelist = function(){
 		$scope.local = localStorage.getItem('registrationId');	
-		alert($scope.local);
+		
 		RAService.vendoraddresourcelist($scope.local).then(function(data){
 			debugger;
 			
@@ -68,6 +68,58 @@ resourceApp.controller('vendorresourcelistCtrl',["$scope","$state","$stateParams
 			})
 		}
 }
+
+$scope.softlockResource = function(resource){
+	debugger;
+	if(resource.softLock == "YES"){
+		resource.softLock = "NO";
+	RAService.PostresourceSoft(resource).then(function(data){
+	$scope.Presource = data;
+		console.log($scope.Presource);
+	},function(err){
+		if(err){
+			$scope.errorMessage = err;
+		}
+	})
+	} else {
+		resource.softLock = "YES";
+		RAService.PostresourceSoft(resource).then(function(data) {
+			$scope.Presource = data;
+			console.log($scope.Presource);
+		}, function(err) {
+			if (err) {
+				$scope.errorMessage = err;
+			}
+		})
+	}
+	}
+
+
+	$scope.hardlockResource = function(resource){
+		debugger;
+		if(resource.hardLock == "YES"){
+			resource.hardLock = "NO";
+		RAService.PostresourceHard(resource).then(function(data){
+		$scope.Presource = data;
+			console.log($scope.Presource);
+		},function(err){
+			if(err){
+				$scope.errorMessage = err;
+			}
+		})
+		} else {
+			resource.hardLock = "YES";
+			RAService.PostresourceHard(resource).then(function(data) {
+				$scope.Presource = data;
+				console.log($scope.Presource);
+			}, function(err) {
+				if (err) {
+					$scope.errorMessage = err;
+				}
+			})
+		}
+		}
+
 } ]);
 resourceApp.controller('vendoraddresourceCtrl',["$scope","$state","$stateParams","$filter","RAService",function($scope, $state, $stateParams, $filter,
 								RAService) {

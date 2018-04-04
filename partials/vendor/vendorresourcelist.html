@@ -7,7 +7,7 @@
                     </div>
                     </div>
                 </form> 
-                <div class="table-responsive m-t-30">
+                <div class="table m-t-30">
                 	<table  class="table text-center">
 						    <thead>
 						        <th>S.No</th>
@@ -20,6 +20,8 @@
 								<th>Preferred Location</th>
 								<th>City</th>
 								<th>Status</th>
+								<th>Soft Lock</th>
+								<th>Hard Lock</th>
 								<th>Edit</th>
 								
 						    </thead>
@@ -34,7 +36,9 @@
 						            <td>{{ resource.availability }}</td>
 									<td>{{ resource.preferredLocation }}</td>
 						            <td>{{ resource.city }}</td>
-									<td><a type="button" class="btn btn-primary butn" ng-click="statusResource(resource)">{{resource.status}}</a></td>
+									<td><a type="button" class="btn btn-primary butn" ng-click="statusResource(resource)">{{resource.status}}</a></td>		
+								    <td><a type="button" class="btn btn-success butn" ng-click="softlockResource(resource)">{{resource.softLock}}</a></td>
+								    <td><a type="button" class="btn btn-danger butn" ng-click="hardlockResource(resource)">{{resource.hardLock}}</a></td>
 						           <td><a type="button" class="btn btn-primary butn" ui-sref="vendor.updateresource({resourceId:resource._id})"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 						        </tr>
 						    </tbody>

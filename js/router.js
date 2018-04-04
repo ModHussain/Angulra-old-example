@@ -159,6 +159,13 @@ resourceApp.config(
 					cache: false,
 					controller:'resourcelistCtrl'
 				})
+				
+				.state('RA.bulkUpload',{
+					url:'/addresource',
+					templateUrl: 'partials/RA/bulkUpload.html',
+					cache: false,
+					controller: 'addresourceCtrl'
+				})
 				.state('RA.addresource',{
 					url:'/addresource',
 					templateUrl: 'partials/RA/addresource.html',

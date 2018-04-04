@@ -20,7 +20,9 @@
                               <th>Avaliability</th>
                               <th>Preferred Location</th>
                               <th>City</th>
+                             
                               <th>Add</th>
+                              
                                </tr>
                                         </thead>
                                         <tbody>
@@ -34,7 +36,8 @@
                                             <td>{{post.availability}}</td>
                                             <td>{{post.preferredLocation}}</td>
                                             <td>{{post.city}}</td>
-                                            <td><a type="button" class="btn btn-primary butn" data-toggle="modal" data-target="#myModal" ng-click="getById(post._id,post.firstName)"><i class="fa fa-user-plus"></i></a></td>
+                                          
+                                            <td><a type="button" class="btn btn-primary butn" data-toggle="modal" data-target="#myModal" ng-click="getById(post._id,post.firstName,post.softLock,post.hardLock)"><i class="fa fa-user-plus"></i></a></td>
 										  
 										    <!-- Modal Starts-->
 											  <div class="modal fade" id="myModal" role="dialog">
@@ -47,8 +50,11 @@
 													<div class="modal-body text-center">
 													  <p>Are you sure want to add this Resource?</p>
 													  <label>{{name}}</label>
+													  <h4>{{root}}</h4>
 													</div>
 													<div class="modal-footer">
+													
+			
 													  <button type="button" class="btn btn-primary butn" ng-click="mappingpostresource()" data-dismiss="modal" >Yes</button>
 													  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
 													</div>

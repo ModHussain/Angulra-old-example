@@ -1,11 +1,12 @@
  <div  class="container m-t-50">
                 <form class="form-inline text-center">
-                    <div class="input-group">
+                   <!--  <div class="input-group">
                     <input type="text" ng-model="search" class="form-control" size="50" placeholder="Search requirement" required>
                     <div class="input-group-btn">
                     <button type="button" class="btn btn-primary">Search</button>
                     </div>
-                    </div>
+                    </div> -->
+                    
                 </form>
                 <div class="table-responsive m-t-30">
                 	<table  class="table text-center">
@@ -15,7 +16,6 @@
 						        <th>Last Name</th>
 						        <th>Mobile</th>
 						        <th>Email</th>
-						        <th>User Name</th>
 						        <th>Status</th>
 								<th>Edit</th>
 						    </thead>
@@ -25,7 +25,7 @@
 						            <td>{{ user.firstname}}</td>
 						            <td>{{ user.lastname}}</td>
 						            <td>{{ user.mobile}}</td>
-						            <td>{{ user.email}}</td>
+						            <td>{{ user.username}}</td>
 						            <td><a type="button" class="btn btn-primary butn">{{ user.status }}</a></td>
 						           <td><a type="button" class="btn btn-primary" ui-sref="RA.alluserupdate({alluserId:user._id})"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 						        </tr>

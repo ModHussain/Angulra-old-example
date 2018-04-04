@@ -38,9 +38,14 @@ resourceApp.controller('vendorpostresourceByIdCtrl',['$scope','$state','$statePa
 			}
 		})
 	}
-	$scope.getById = function(id,name){
+	$scope.getById = function(id,name,softlock,hardlock){
 		$scope.idobject = id;
 		$scope.name = name;
+		$scope.softLock = softlock;
+		$scope.hardLock=hardlock;
+		if($scope.hardLock == "YES"){
+			$scope.root = " This Resource is already engaged with some other Customer"
+		}
 	}
 	$scope.mappingpostresource = function(){
 		debugger;
