@@ -5,6 +5,7 @@ resourceApp.controller('vendorCtrl',['$scope','$state','RAService',function($sco
 		//$scope.getroles();
 	})
 		$scope.vvv = localStorage.getItem('registrationType');
+	    $scope.id=localStorage.getItem('registrationId');
 		$scope.register =  $scope.vvv.split(',');
 		$scope.user1 = localStorage.getItem('user')
 		console.log($scope.user1);

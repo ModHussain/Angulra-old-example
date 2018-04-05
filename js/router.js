@@ -389,6 +389,13 @@ resourceApp.config(
 					cache: false,
 					controller:'vendorresourcemapCtrl'
 				})
+				.state('vendor.vendorlist',{
+                	url: '/vendorlist/:userId',
+                	templateUrl: 'partials/vendor/vendorList.html',
+                    cache: false,
+                	controller: 'vendorlistCtrl'
+                	
+                })
 				
 				//
 
